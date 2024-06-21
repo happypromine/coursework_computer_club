@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Пользователи</h1>
+<a th:href="@{/users/add}" class="button">Добавить пользователя</a>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Дата рождения</th>
+        <th>Пол</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Дата регистрации</th>
+        <th>Статус</th>
+        <th>Действия</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.dateOfBirth}"></td>
+        <td th:text="${user.gender}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.phoneNumber}"></td>
+        <td th:text="${user.registrationDate}"></td>
+        <td th:text="${user.status}"></td>
+        <td>
+            <a th:href="@{/users/edit/{id}(id=${user.id})}">Редактировать</a>
+            <a th:href="@{/users/delete/{id}(id=${user.id})}">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}" class="button">Вернуться на главную</a>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить Пользователя</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Добавить Пользователя</h1>
+<form th:action="@{/users}" th:object="${user}" method="post">
+    <div>
+        <label>Имя:</label>
+        <input type="text" th:field="*{name}" />
+    </div>
+    <div>
+        <label>Фамилия:</label>
+        <input type="text" th:field="*{surname}" />
+    </div>
+    <div>
+        <label>Дата рождения:</label>
+        <input type="date" th:field="*{dateOfBirth}" />
+    </div>
+    <div>
+        <label>Пол:</label>
+        <select th:field="*{gender}">
+            <option value="Мужской">Мужской</option>
+            <option value="Женский">Женский</option>
+            <option value="Другое">Другое</option>
+        </select>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" th:field="*{email}" />
+    </div>
+    <div>
+        <label>Номер телефона:</label>
+        <input type="text" th:field="*{phoneNumber}" />
+    </div>
+    <div>
+        <label>Статус:</label>
+        <select th:field="*{status}">
+            <option value="Активный">Активный</option>
+            <option value="ВИП">ВИП</option>
+            <option value="Неактивный">Неактивный</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+<a th:href="@{/users}" class="button">Назад к пользователям</a>
+</body>
+</html>

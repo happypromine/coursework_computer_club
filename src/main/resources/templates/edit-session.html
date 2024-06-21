@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать игровую сессию</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Редактировать игровую сессию</h1>
+<form th:action="@{/sessions/update/{id}(id=${sessionData.id})}" th:object="${sessionData}" method="post">
+    <div>
+        <label>Клиент:</label>
+        <select th:field="*{user.id}">
+            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name + ' ' + user.surname + ' ' + user.email}"></option>
+        </select>
+    </div>
+    <div>
+        <label>Игровое устройство:</label>
+        <select th:field="*{computer.id}">
+            <option th:each="computer : ${computers}" th:value="${computer.id}" th:text="${computer.name}"></option>
+        </select>
+    </div>
+    <div>
+        <label>Дата сессии:</label>
+        <input type="date" th:field="*{date}" />
+    </div>
+    <div>
+        <label>Начало сессии:</label>
+        <input type="time" th:field="*{startTime}" />
+    </div>
+    <div>
+        <label>Конец сессии:</label>
+        <input type="time" th:field="*{endTime}" />
+    </div>
+    <div>
+        <label>Общая стоимость:</label>
+        <input type="number" step="0.01" th:field="*{paymentAmount}" />
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+<a th:href="@{/sessions}" class="button">Назад к сессиям</a>
+</body>
+</html>

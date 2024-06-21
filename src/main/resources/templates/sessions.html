@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Игровые сессии</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Игровые сессии</h1>
+<a th:href="@{/sessions/add}" class="button">Добавить игровую сессию</a>
+<table>
+    <tr>
+        <th>Клиент</th>
+        <th>Игровое устройство</th>
+        <th>Дата сессии</th>
+        <th>Время начала</th>
+        <th>Время окончания</th>
+        <th>Итоговая стоимость</th>
+    </tr>
+    <tr th:each="sessionData : ${sessions}">
+        <td th:text="${sessionData.user.name + ' ' + sessionData.user.surname + ' ' + sessionData.user.email}"></td>
+        <td th:text="${sessionData.computer.name} + ' '+ ${sessionData.computer.hourlyRate} + ' руб/час'"></td>
+        <td th:text="${sessionData.date}"></td>
+        <td th:text="${sessionData.startTime}"></td>
+        <td th:text="${sessionData.endTime}"></td>
+        <td th:text="${sessionData.paymentAmount}"></td>
+        <td>
+            <a th:href="@{/sessions/edit/{id}(id=${sessionData.id})}">Редактировать</a>
+            <a th:href="@{/sessions/delete/{id}(id=${sessionData.id})}">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}" class="button">Вернуться на главную</a>
+</body>
+</html>

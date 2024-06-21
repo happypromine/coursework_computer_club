@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Игровые устройства</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Игровые устройства</h1>
+<a th:href="@{/computers/add}" class="button">Добавить игровое устройство</a>
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Тип</th>
+        <th>Процессор</th>
+        <th>ОЗУ, МБ</th>
+        <th>Видеокарта</th>
+        <th>Стоимость в час, руб</th>
+        <th>Доступность</th>
+    </tr>
+    <tr th:each="computer : ${computers}">
+        <td th:text="${computer.name}"></td>
+        <td th:text="${computer.type}"></td>
+        <td th:text="${computer.processor}"></td>
+        <td th:text="${computer.ram}"></td>
+        <td th:text="${computer.graphicsCard}"></td>
+        <td th:text="${computer.hourlyRate}"></td>
+        <td th:text="${computer.availability}"></td>
+        <td>
+            <a th:href="@{/computers/edit/{id}(id=${computer.id})}">Редактировать</a>
+            <a th:href="@{/computers/delete/{id}(id=${computer.id})}">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}" class="button">Вернуться на главную</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Оплаты</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Оплаты</h1>
+<a th:href="@{/payments/add}" class="button">Добавить оплату</a>
+<table>
+    <tr>
+        <th>Клиент</th>
+        <th>Сессия</th>
+        <th>Оплата, руб</th>
+        <th>Дата оплаты</th>
+        <th>Способ оплаты</th>
+    </tr>
+    <tr th:each="payment : ${payments}">
+        <td th:text="${payment.user.name + ' ' + payment.user.surname + ' ' + payment.user.email}"></td>
+        <td th:text="${payment.session.date} + ' '+ ${payment.session.paymentAmount} + ' руб'"></td>
+        <td th:text="${payment.amount}"></td>
+        <td th:text="${payment.dateTime}"></td>
+        <td th:text="${payment.paymentMethod}"></td>
+        <td>
+            <a th:href="@{/payments/edit/{id}(id=${payment.id})}">Редактировать</a>
+            <a th:href="@{/payments/delete/{id}(id=${payment.id})}">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}" class="button">Вернуться на главную</a>
+</body>
+</html>

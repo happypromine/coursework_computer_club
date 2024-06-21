@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить Игровое Устройтсво</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Изменить Игровое Устройство</h1>
+<form th:action="@{/computers/update/{id}(id=${computer.id})}" th:object="${computer}" method="post">
+    <div>
+        <label>Название:</label>
+        <input type="text" th:field="*{name}" />
+    </div>
+    <div>
+        <label>Тип:</label>
+        <select th:field="*{type}">
+            <option value="PC">PC</option>
+            <option value="Playstation 5">Playstation 5</option>
+            <option value="Xbox Series X">Xbox Series X</option>
+            <option value="Nintendo Switch">Nintendo Switch</option>
+        </select>
+    </div>
+    <div>
+        <label>Процессор:</label>
+        <input type="text" th:field="*{processor}" />
+    </div>
+    <div>
+        <label>ОЗУ:</label>
+        <input type="number" th:field="*{ram}" />
+    </div>
+    <div>
+        <label>Видеокарта:</label>
+        <input type="text" th:field="*{graphicsCard}" />
+    </div>
+    <div>
+        <label>Стоимость в час:</label>
+        <input type="number" step="0.01" th:field="*{hourlyRate}" />
+    </div>
+    <div>
+        <label>Доступность:</label>
+        <select th:field="*{availability}">
+            <option value="Доступен">Доступен</option>
+            <option value="Занят">Занят</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+<a th:href="@{/computers}" class="button">Назад к компьютерам</a>
+</body>
+</html>
